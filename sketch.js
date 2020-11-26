@@ -46,7 +46,7 @@ function preload()
 
 function setup()
 {
-    canvas = createCanvas(displayWidth - 450, displayHeight - 200);
+    canvas = createCanvas(windowWidth, windowHeight);
     canvas.position(25, 25);
 
     survivalTime = 0;
