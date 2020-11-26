@@ -46,15 +46,14 @@ function preload()
 
 function setup()
 {
-    canvas = createCanvas(displayWidth - 450, displayHeight - 200);
-    canvas.position(25, 25);
+    canvas = createCanvas(windowWidth, windowHeight);
 
     survivalTime = 0;
     coinCount = 0;
 
-    ground = createSprite(width - 100, height - 10, width, 20);
+    ground = createSprite(-width * 5, height - 10, width, 20);
     ground.addImage(groundImage);
-    ground.scale = 0.7;
+    ground.scale = 0.3;
 
     invisibleGround = createSprite(width/2, height - 9, width, 20);
     invisibleGround.visible = false;
@@ -98,6 +97,7 @@ function draw()
     text("Survival Time : " + survivalTime, 40, 25);
     text("COIN COUNT : " + coinCount, width - 220, 25);
 
+    console.log(ground.width, width);
     if(gameState === PLAY)
     {
         if(frameCount % 20 === 0)
@@ -255,7 +255,7 @@ function spawnEnemy()
         }
 
         enemy.scale = 0.4;
-        enemy.lifetime = 300;
+        enemy.lifetime = width;
 
         mario.depth = enemy.depth + 1;
 
@@ -271,7 +271,7 @@ function spawnPipe()
         pipe.addImage(pipeImage);
         pipe.scale = 1;
         pipe.velocityX = -5;
-        pipe.lifetime = 200;
+        pipe.lifetime = width;
 
         mario.depth = pipe.depth + 1;
 
@@ -283,11 +283,11 @@ function spawnCoin()
 {
     if(frameCount % 100 === 0)
     {
-        coin = createSprite(width, height / 2 + 50, 10, 10);
+        coin = createSprite(width, height/2 + 50, 10, 10);
         coin.addImage(coinImage);
         coin.scale = 0.4;
         coin.velocityX = -4;
-        coin.lifetime = 200;
+        coin.lifetime = width;
 
         mario.depth = coin.depth + 1;
 
@@ -303,7 +303,7 @@ function spawnCloud()
         cloud.addImage(cloudImage);
         cloud.scale = 0.5;
         cloud.velocityX = -2;
-        cloud.lifetime = 400;
+        cloud.lifetime = width;
 
         mario.depth = cloud.depth + 1;
 
